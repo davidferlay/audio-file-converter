@@ -10,7 +10,7 @@ Executing the script will:
 - Get the list of supported file format from your sox install
 - List all files recursively and compare their extensions againt those supported
 - Check the sample rate of these files only
-- Convert those not matching to 44.1 kHz and 24bit
+- Convert and overwritte in-place those not matching to 44.1 kHz and 24bit
 - Output everything in shell for you to check results
 
 ## Requirements
