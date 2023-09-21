@@ -20,15 +20,14 @@ Executing the script will:
 
 ## How to use
 
-- Place .sh file at the root directory where all audio files you want to check and convert resides
+- Place .sh file at the root directory where all the audio files you want to check and convert reside
    - it can be the AUDIO directory of your Octatrack CF Card, for instance
 - Double click on the script to convert all files found as needed
-- To execute the script on Windows (through WSL), copy the .cmd file nest to the script and click the .cmd to execute exerything
-use the audio-file-converter.cmd
+- To execute the script on Windows (through WSL), copy the .cmd file next to the script and click the .cmd to execute exerything
 
 ## Default variables
 
 - By defaults, script will check and convert audio files to 44.1 kHz and 24bit
-- You can edit these values to your needs in the first line of the script
+- You can edit these values to your needs in the first line of the script:
 
 ![image](https://github.com/davidferlay/audio-file-converter/assets/20738264/17594db8-44b8-4b1e-9792-e78107d0c26f)
