@@ -1,13 +1,17 @@
 # audio-file-converter
 
-- Cross platform script to convert sampe rate and bit depth of all supported audio files found recursively
+- Cross platform script to convert sample rate and bit depth of all supported audio files found recursively
+
+![image](https://github.com/davidferlay/audio-file-converter/assets/20738264/fd1b80b8-b801-4dd1-a26a-df8899e947d5)
 
 ## What does it do
 
-- Gets the list of supported file format from sox command line
-- Lists all files recursively and compare their file extensions againt those supported
-- Checks the sample rate of these files only
+Executing the script will:
+- Get the list of supported file format from your sox install
+- List all files recursively and compare their extensions againt those supported
+- Check the sample rate of these files only
 - Convert those not matching to 44.1 kHz and 24bit
+- Output everything in shell for you to check results
 
 ## Requirements
 
@@ -21,3 +25,10 @@
 - Double click on the script to convert all files found as needed
 - To execute the script on Windows (through WSL), copy the .cmd file nest to the script and click the .cmd to execute exerything
 use the audio-file-converter.cmd
+
+## Default variables
+
+- By defaults, script will check and convert audio files to 44.1 kHz and 24bit
+- You can edit these values to your needs in the first line of the script
+
+![image](https://github.com/davidferlay/audio-file-converter/assets/20738264/17594db8-44b8-4b1e-9792-e78107d0c26f)
