@@ -35,6 +35,8 @@ get_supported_extensions() {
 get_sample_rate() {
   local input_file="$1"
   soxi -r "$input_file"
+  # ffprobe -v error -select_streams a:0 -show_entries stream=sample_rate -of default=noprint_wrappers=1:nokey=1 "$input_file"
+  # mediainfo --Output='Audio;%SamplingRate%' "$input_file"
 }
 
 # Function to convert audio files to 44.1kHz sample rate using sox
