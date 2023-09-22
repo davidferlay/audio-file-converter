@@ -10,6 +10,16 @@ convert_to_kHz() {
   echo "$((sample_rate / 1000)).$((sample_rate % 1000 / 100)) kHz"
 }
 
+# Convert seconds to a human-readable format
+format_time() {
+  local seconds="$1"
+  local days=$((seconds / 86400))
+  local hours=$(( (seconds % 86400) / 3600 ))
+  local minutes=$(( (seconds % 3600) / 60 ))
+  local seconds=$((seconds % 60))
+  echo "${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds"
+}
+
 # Define the supported extensions using the output of the 'sox' command
 get_supported_extensions() {
   supported_extensions=$(sox --help | grep -A1 "^AUDIO FILE FORMATS:" | head -1 | sed 's/AUDIO FILE FORMATS: //g' | tr -s ' ' '\n')
@@ -81,19 +91,9 @@ end_time=$(date +%s)
 # Calculate the time difference in seconds
 time_difference=$((end_time - start_time))
 
-# Function to convert seconds to a human-readable format
-function format_time {
-  local seconds="$1"
-  local days=$((seconds / 86400))
-  local hours=$(( (seconds % 86400) / 3600 ))
-  local minutes=$(( (seconds % 3600) / 60 ))
-  local seconds=$((seconds % 60))
-  echo "${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds"
-}
-
 echo
 echo "Conversion complete. Ctrl+c to exit"
-echo "Duration: $(format_time ${time_difference})"
+echo "$(find . -type f | wc -l) files processed in: $(format_time ${time_difference})"
 echo
 
 # Prevent shell window to close, to check logs
