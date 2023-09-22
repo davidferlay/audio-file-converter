@@ -4,6 +4,7 @@
 output_bit_depth=24
 output_sample_rate=44100
 
+# Convert Hz to kHz
 convert_to_kHz() {
   local sample_rate="$1"
   echo "$((sample_rate / 1000)).$((sample_rate % 1000 / 100)) kHz"
@@ -51,12 +52,14 @@ convert_audio() {
   fi
 }
 
-# Find and convert audio files recursively
 echo "Starting script..."
 echo
 sox --version
 get_supported_extensions
 echo
+
+# Record the start time
+start_time=$(date +%s)
 
 # List files recursively from the current directory
 find . -type f | while read -r file; do
@@ -72,8 +75,26 @@ find . -type f | while read -r file; do
   fi
 done
 
-echo
-echo "Conversion completed."
+# Record the end time
+end_time=$(date +%s)
 
-# Prevent shell windo to close, to check logs
+# Calculate the time difference in seconds
+time_difference=$((end_time - start_time))
+
+# Function to convert seconds to a human-readable format
+function format_time {
+  local seconds="$1"
+  local days=$((seconds / 86400))
+  local hours=$(( (seconds % 86400) / 3600 ))
+  local minutes=$(( (seconds % 3600) / 60 ))
+  local seconds=$((seconds % 60))
+  echo "${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds"
+}
+
+echo
+echo "Conversion complete. Ctrl+c to exit"
+echo "Duration: $(format_time ${time_difference})"
+echo
+
+# Prevent shell window to close, to check logs
 sleep infinity
